@@ -20,7 +20,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.SplashActivity"
+        <activity android:name=".ui.WorldCityActivity"></activity>
+        <activity
+            android:name=".ui.SplashActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -31,8 +33,7 @@
         </activity>
         <activity android:name=".ui.CommonlyUsedCityActivity" />
         <activity android:name=".ui.WallPaperActivity" />
-        <activity android:name=".MainActivity"/>
-        <!-- Android定位SDK自v4.0版本起，需要进行AK鉴权 -->
+        <activity android:name=".MainActivity" /> <!-- Android定位SDK自v4.0版本起，需要进行AK鉴权 -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="PZKsgnN6VnQCzGWS9xhNz3neqBLY58Hz" /> <!-- 使用定位SDK，需在AndroidManifest.xml文件中Application标签中声明service组件，每个App拥有自己单独的定位service -->

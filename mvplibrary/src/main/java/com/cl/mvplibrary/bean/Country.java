@@ -3,7 +3,7 @@ package com.cl.mvplibrary.bean;
 import org.litepal.crud.LitePalSupport;
 
 /**
- * 世界城市实体类
+ * 世界城市
  * @author: cl
  * @date: 2022/4/9
  */

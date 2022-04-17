@@ -49,6 +49,7 @@ import com.cl.badweather.eventbus.SearchCityEvent;
 import com.cl.badweather.ui.CommonlyUsedCityActivity;
 import com.cl.badweather.ui.SearchCityActivity;
 import com.cl.badweather.ui.WallPaperActivity;
+import com.cl.badweather.ui.WorldCityActivity;
 import com.cl.badweather.utils.CodeToStringUtils;
 import com.cl.badweather.utils.Constant;
 import com.cl.badweather.utils.DateUtils;
@@ -65,7 +66,6 @@ import com.cl.mvplibrary.view.MarqueeTextView;
 import com.cl.mvplibrary.view.RoundProgressBar;
 import com.cl.mvplibrary.view.WhiteWindmills;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -189,7 +189,7 @@ public class MainActivity extends MvpActivity<WeatherContract.WeatherPresenter> 
     @BindView(R.id.refresh)
     SmartRefreshLayout refresh; //刷新布局
 
-    private RxPermissions rxPermissions; /*权限请求框架*/
+    //private RxPermissions rxPermissions; /*权限请求框架*/ 放到欢迎页里面
 
     private List<String> list;//字符串列表
     private List<CityResponse> provinceList;//省列表数据
@@ -327,9 +327,8 @@ public class MainActivity extends MvpActivity<WeatherContract.WeatherPresenter> 
         //true，表示用户同意隐私合规政策
         LocationClient.setAgreePrivacy(true);
         StatusBarUtil.transparencyBar(context); //透明状态栏
-        rxPermissions = new RxPermissions(this); //实例化这个权限请求框架，否则会报错
         initList();//天气预报列表初始化
-        permissionVersion();//权限判断
+        //permissionVersion();//权限判断 放到欢迎页
         if (isOpenLocationServiceEnable()) {
             startLocation();
         } else {
@@ -360,29 +359,6 @@ public class MainActivity extends MvpActivity<WeatherContract.WeatherPresenter> 
         return false;
     }
 
-    //权限判断
-    private void permissionVersion() {
-        if (Build.VERSION.SDK_INT >= 23) {//6.0或6.0以上
-            //动态权限申请
-            permissionRequest();
-        } else {
-            //发现只要权限在AndroidManifest.xml中注册过，均会认为改权限granted 提示一下即可
-            ToastUtils.showShortToast(this, "你的手机版本在Android6.0以下，不需要动态申请权限。");
-        }
-    }
-
-    //动态权限申请
-    private void permissionRequest() {
-        rxPermissions.request(Manifest.permission.ACCESS_FINE_LOCATION).subscribe(granted -> {
-            if (granted) { //申请成功
-                //得到权限之后开始定位
-                startLocation();
-
-            } else {//申请失败
-                ToastUtils.showShortToast(this, "权限未开启");
-            }
-        });
-    }
 
     //百度定位新版
     private void startLocation() {
