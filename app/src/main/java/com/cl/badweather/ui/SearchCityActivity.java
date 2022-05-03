@@ -28,8 +28,8 @@ import com.cl.badweather.contract.SearchCityContract;
 import com.cl.badweather.eventbus.SearchCityEvent;
 import com.cl.badweather.utils.CodeToStringUtils;
 import com.cl.badweather.utils.Constant;
-
 import com.cl.badweather.utils.SPUtils;
+import com.cl.badweather.utils.SpeechUtil;
 import com.cl.badweather.utils.StatusBarUtil;
 import com.cl.badweather.utils.ToastUtils;
 import com.cl.mvplibrary.mvp.MvpActivity;
@@ -46,6 +46,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
@@ -53,6 +54,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 import static com.cl.mvplibrary.utils.RecyclerViewAnimation.runLayoutAnimation;
+
 
 /**
  * 搜索城市
@@ -73,8 +75,6 @@ public class SearchCityActivity extends MvpActivity<SearchCityContract.SearchCit
      */
     @BindView(R.id.iv_clear_search)
     ImageView ivClearSearch;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     /**
      * 数据显示列表
      */
@@ -105,6 +105,8 @@ public class SearchCityActivity extends MvpActivity<SearchCityContract.SearchCit
      */
     @BindView(R.id.voice_search)
     ImageView voiceSearch;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     /**
      * V7数据源
@@ -131,6 +133,20 @@ public class SearchCityActivity extends MvpActivity<SearchCityContract.SearchCit
      */
     private AlertDialog tipDialog = null;
 
+    @Override
+    public void initDate(Bundle savedInstanceState) {
+        //白色状态栏
+        StatusBarUtil.setStatusBarColor(context, R.color.white);
+        //黑色字体
+        StatusBarUtil.StatusBarLightMode(context);
+        Back(toolbar);
+
+        initView();//初始化页面数据
+        initAutoComplete("history", editQuery);
+        //初始化语音播报
+        SpeechUtil.init(this);
+    }
+
     private void initView() {
         //默认账号
         String username = "007";
@@ -142,13 +158,15 @@ public class SearchCityActivity extends MvpActivity<SearchCityContract.SearchCit
         //创建历史标签适配器
         //为标签设置对应的内容
         mRecordsAdapter = new TagAdapter<String>(recordList) {
+
             @Override
             public View getView(FlowLayout parent, int position, String s) {
-                TextView tv = (TextView) LayoutInflater.from(context).inflate(R.layout.tv_history,flSearchRecords,false);
+                TextView tv = (TextView) LayoutInflater.from(context).inflate(R.layout.tv_history,
+                        flSearchRecords, false);
+                //为标签设置对应的内容
                 tv.setText(s);
                 return tv;
             }
-
         };
         //添加输入监听
         editQuery.addTextChangedListener(textWatcher);
@@ -213,7 +231,7 @@ public class SearchCityActivity extends MvpActivity<SearchCityContract.SearchCit
 
         mAdapter.setOnItemChildClickListener((adapter, view, position) -> {
             SPUtils.putString(Constant.LOCATION, mList.get(position).getName(), context);
-            //点击item发送消息
+            //发送消息
             EventBus.getDefault().post(new SearchCityEvent(mList.get(position).getName(),
                     mList.get(position).getAdm2()));//Adm2 代表市
 
@@ -343,19 +361,6 @@ public class SearchCityActivity extends MvpActivity<SearchCityContract.SearchCit
 
 
     @Override
-    public void initDate(Bundle savedInstanceState) {
-        //白色状态栏
-        StatusBarUtil.setStatusBarColor(context, R.color.white);
-        //黑色字体
-        StatusBarUtil.StatusBarLightMode(context);
-        Back(toolbar);
-
-        initView();//初始化页面数据
-        initAutoComplete("history", editQuery);
-        //初始化语音播报
-    }
-
-    @Override
     public int getLayoutId() {
         return R.layout.activity_search_city;
     }
@@ -463,4 +468,10 @@ public class SearchCityActivity extends MvpActivity<SearchCityContract.SearchCit
         ToastUtils.showShortToast(context, "网络异常");
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }

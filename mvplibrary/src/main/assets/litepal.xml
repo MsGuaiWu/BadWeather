@@ -3,10 +3,12 @@
     <!--数据库名称-->
     <dbname value="BadWeather"/>
     <!--数据库版本-->
-    <version value="2"/>
+    <version value="4"/>
     <!--数据列表 映射模型-->
     <list>
         <mapping class="com.cl.mvplibrary.bean.ResidentCity"/> <!--常用城市-->
         <mapping class="com.cl.mvplibrary.bean.Country" />  <!--世界国家-->
+        <mapping class="com.cl.mvplibrary.bean.AppVersion"/> <!--App版本信息-->
+        <mapping class="com.cl.mvplibrary.bean.WallPaper" /> <!--壁纸数据-->
     </list>
 </litepal>

@@ -13,11 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white"
-        app:layout_constraintEnd_toEndof="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:navigationIcon="@mipmap/icon_return"
         app:contentInsetLeft="@dimen/dp_16"
-        app:layout_constraintLeft_toLeftof="parent"
-        app:layout_constraintTop_toTopof="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/AppTheme.PopupOverlay">
         <TextView
             android:id="@+id/tv_title"

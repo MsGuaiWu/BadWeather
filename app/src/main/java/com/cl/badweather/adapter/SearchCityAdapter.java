@@ -10,6 +10,7 @@ import com.cl.badweather.bean.NewSearchCityResponse;
 import java.util.List;
 
 /**
+ * 搜索城市结果列表适配器  V7
  * @author: cl
  * @date: 2022/3/21
  */

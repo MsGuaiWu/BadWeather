@@ -8,9 +8,15 @@ import android.os.Handler;
 
 import androidx.annotation.NonNull;
 
+import com.baidu.mapapi.CoordType;
+import com.baidu.mapapi.SDKInitializer;
+import com.baidu.mapapi.common.BaiduMapSDKException;
+import com.cl.badweather.utils.ToastUtils;
 import com.cl.mvplibrary.BaseApplication;
 import com.cl.mvplibrary.net.NetworkApi;
 import com.cl.mvplibrary.utils.ActivityManager;
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechUtility;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
@@ -21,6 +27,8 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
 import org.litepal.LitePal;
+
+import pl.com.salsoft.sqlitestudioremote.SQLiteStudioService;
 
 /**
  * @author: cl
@@ -47,11 +55,10 @@ public class WeatherApplication extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        SQLiteStudioService.instance().start(this);
         activityManager = new ActivityManager();
         context = getApplicationContext();
         weatherApplication = this;
-
 
         this.registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
@@ -91,7 +98,29 @@ public class WeatherApplication extends BaseApplication {
         });
         //初始化网络框架
         NetworkApi.init(new NetworkRequiredInfo(this));
+        //初始化数据库
         LitePal.initialize(this);
+        /**
+         * 设置隐私模式，默认false
+         * 如果设置true,一定要保证在调用 SDKInitializer.initialize(this); 之前设置
+         *
+         * @param context 必须是Application Context
+         * @param isEnable ture-同意隐私政策； false-不同意隐私政策；
+         *
+         */
+        SDKInitializer.setAgreePrivacy(this,true);
+        //在使用SDK各组件之前初始化context信息，传入ApplicationContext
+        try {
+            SDKInitializer.initialize(this);
+        }catch (BaiduMapSDKException e){
+            e.printStackTrace();
+        }
+
+        //自4.3.0起，百度地图SDK所有接口均支持百度坐标和国测局坐标，用此方法设置您使用的坐标类型.
+        //包括BD09LL和GCJ02两种坐标，默认是BD09LL坐标。
+        SDKInitializer.setCoordType(CoordType.BD09LL);
+        //配置讯飞语音SDK
+        SpeechUtility.createUtility(this, SpeechConstant.APPID +"=5af0a6fa");
     }
     public static ActivityManager getActivityManager() {
         return activityManager;

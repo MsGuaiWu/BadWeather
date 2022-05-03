@@ -33,7 +33,7 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:contentInsetLeft="16dp"
+            app:contentInsetLeft="0dp"
             app:popupTheme="@style/AppTheme.PopupOverlay">
             <!--地图天气-->
             <ImageView
@@ -130,6 +130,7 @@
                                 android:textSize="@dimen/sp_18"/>
                             <!--播放图标-->
                             <ImageView
+                                android:id="@+id/iv_voice_broadcast"
                                 android:layout_width="@dimen/dp_20"
                                 android:layout_height="@dimen/dp_20"
                                 android:background="@mipmap/icon_broadcast"
@@ -214,13 +215,14 @@
                             android:layout_marginTop="@dimen/dp_16"
                             android:gravity="center_vertical"
                             android:orientation="horizontal">
+
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
                                 android:id="@+id/tv_city"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
                                 android:text="定位中"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/sp_18"/>
+                                android:textSize="@dimen/sp_18" />
                             <ImageView
                                 android:id="@+id/iv_location"
                                 android:layout_width="@dimen/dp_24"
@@ -370,7 +372,7 @@
                                 android:id="@+id/tv_more_air"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:drawableRight="@color/blue_more"
+                                android:drawableRight="@mipmap/icon_more_blue"
                                 android:padding="@dimen/dp_4"
                                 android:text="更多"
                                 android:textColor="@color/blue_more"
@@ -534,7 +536,7 @@
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="0"
+                                            android:text="O"
                                             android:textColor="@color/blue_one"
                                             android:textSize="@dimen/sp_12"/>
                                         <TextView
@@ -751,5 +753,19 @@
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
     </LinearLayout>
+    <!--浮动按钮 语音搜索-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_voice_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/dp_20"
+        android:clickable="true"
+        android:src="@mipmap/icon_voice_search"
+        app:backgroundTint="@color/white"
+        app:backgroundTintMode="screen"
+        app:fabSize="mini"
+        app:hoveredFocusedTranslationZ="@dimen/dp_18"
+        app:pressedTranslationZ="@dimen/dp_18" />
 
 </FrameLayout>

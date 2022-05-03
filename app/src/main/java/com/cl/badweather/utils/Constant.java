@@ -1,5 +1,7 @@
 package com.cl.badweather.utils;
 
+import retrofit2.http.PUT;
+
 /**
  * 统一管理缓存中对应的KEY
  * @author: cl
@@ -10,6 +12,14 @@ public class Constant {
      * 和风天气KEY
      */
     public static final String API_KEY = "a2e9c15bf0244959b7972921fc1356c8";
+    /**
+     * 更新APP的用户id
+     */
+    public static final String UPDATE_USER_ID = "626d0bf4f945484e5998ad9d";
+    /**
+     * 更新APP的用户Token
+     */
+    public static final String UPDATE_API_TOKEN = "8a933c76074583d1b14e9d2c3ac83008";
     /**
      * 返回成功码
      */
@@ -56,6 +66,14 @@ public class Constant {
     public static final String FLAG_OTHER_RETURN = "flag_other_return";
     public static final String LOCATION = "location";
     /**
+     * App首次启动
+     */
+    public static final String APP_FIRST_START = "appFirstStart";
+    /**
+     * 今日启动APP的时间
+     */
+    public static final String START_UP_APP_TIME = "startAppTime";
+    /**
      * 成功
      */
     public static final String SUCCESS = "success";
@@ -78,4 +96,28 @@ public class Constant {
      * 每日提示弹窗是否弹出
      */
     public static final String EVERYDAY_POP_BOOLEAN = "everydayPopBoolean";
+    /**
+     * 语音搜索是否关闭
+     */
+    public static final String VOICE_SEARCH_BOOLEAN = "voiceSearchBoolean";
+
+    /**
+     * 播报人
+     */
+    public static final String VOICE_NAME = "voiceName";
+
+    /**
+     * 语速
+     */
+    public static final String SPEED = "speed";
+
+    /**
+     * 音调
+     */
+    public static final String PITCH = "pitch";
+
+    /**
+     * 音量
+     */
+    public static final String VOLUME = "volume";
 }

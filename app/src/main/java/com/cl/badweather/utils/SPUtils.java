@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 /**
  * SharedPreferences工具类
  *数据持久化框架，用于存储和读取 key-value 类型的原始基本数据对
- * @author llw
+ * @author cl
  */
 public class SPUtils {
     private static final String NAME = "config";

@@ -60,7 +60,7 @@ dependencies {
     //状态栏
     api 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     //支持okhttp
-    api 'com.squareup.okhttp3:okhttp:3.14.9'
+    api 'com.squareup.okhttp3:okhttp:3.8.1'
 
     //retrofit2
     api 'com.squareup.retrofit2:retrofit:2.9.0'

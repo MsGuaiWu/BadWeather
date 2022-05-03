@@ -44,6 +44,7 @@ public class WallPaperContract {
         /*
             获取壁纸数据
          */
+        @SuppressLint("CheckResult")
         public void getWallPaper() {
             //6 表示访问网络壁纸接口
             ApiService service = NetworkApi.createService(ApiService.class,6);

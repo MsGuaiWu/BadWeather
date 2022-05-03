@@ -9,8 +9,10 @@ import com.cl.badweather.bean.AirNowResponse;
 import com.cl.badweather.bean.DailyResponse;
 import com.cl.badweather.bean.HourlyResponse;
 import com.cl.badweather.bean.LifestyleResponse;
+import com.cl.badweather.bean.MinutePrecResponse;
 import com.cl.badweather.bean.NewSearchCityResponse;
 import com.cl.badweather.bean.NowResponse;
+import com.cl.badweather.bean.WarningResponse;
 import com.cl.mvplibrary.base.BaseView;
 import com.cl.mvplibrary.net.NetworkApi;
 import com.cl.mvplibrary.net.observer.BaseObserver;
@@ -171,6 +173,55 @@ public class WeatherContract {
                }
            }));
        }
+
+       /**
+        * 城市灾害预警
+        * @param location 城市id
+        */
+       @SuppressLint("CheckResult")
+       public void nowWarn(String location) {
+           ApiService service = NetworkApi.createService(ApiService.class,3);
+           service.nowWarn(location).compose(NetworkApi.applySchedulers(new BaseObserver<WarningResponse>() {
+               @Override
+               public void onSuccess(WarningResponse warningResponse) {
+                   if (getView() != null) {
+                       getView().getNowWarnResult(warningResponse);
+                   }
+               }
+
+               @Override
+               public void onFailure(Throwable e) {
+                    if (getView() != null) {
+                        getView().getWeatherDataFailed();
+                    }
+               }
+           }));
+       }
+
+       /**
+        * 分钟级降水
+        *
+        * @param location 经纬度拼接字符串，使用英文逗号分隔,经度在前纬度在后
+        */
+       @SuppressLint("CheckResult")
+       public void getMinutePrec(String location) {
+           ApiService service = NetworkApi.createService(ApiService.class, 3);
+           service.getMinutePrec(location).compose(NetworkApi.applySchedulers(new BaseObserver<MinutePrecResponse>() {
+               @Override
+               public void onSuccess(MinutePrecResponse minutePrecResponse) {
+                   if (getView() != null) {
+                       getView().getMinutePrecResult(minutePrecResponse);
+                   }
+               }
+
+               @Override
+               public void onFailure(Throwable e) {
+                   if (getView() != null) {
+                       getView().getWeatherDataFailed();
+                   }
+               }
+           }));
+       }
    }
 
    public interface IWeatherView extends BaseView {
@@ -189,6 +240,11 @@ public class WeatherContract {
        void getHourlyResult(HourlyResponse response);
        //当天空气质量
        void getAirNowResult(AirNowResponse response);
+       //灾害预警
+       void getNowWarnResult(WarningResponse response);
+
+       //分钟级降水
+       void getMinutePrecResult(MinutePrecResponse response);
        //错误返回
        void getDataFailed();
    }

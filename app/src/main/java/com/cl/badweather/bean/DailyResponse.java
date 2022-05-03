@@ -278,7 +278,7 @@ public class DailyResponse {
         public void setWindSpeedDay(String windSpeedDay) {
             this.windSpeedDay = windSpeedDay;
         }
-
+        //夜间风向360角度
         public String getWind360Night() {
             return wind360Night;
         }
@@ -286,7 +286,7 @@ public class DailyResponse {
         public void setWind360Night(String wind360Night) {
             this.wind360Night = wind360Night;
         }
-
+        //夜间风向
         public String getWindDirNight() {
             return windDirNight;
         }
@@ -294,7 +294,7 @@ public class DailyResponse {
         public void setWindDirNight(String windDirNight) {
             this.windDirNight = windDirNight;
         }
-
+        //夜间风力
         public String getWindScaleNight() {
             return windScaleNight;
         }
@@ -302,7 +302,7 @@ public class DailyResponse {
         public void setWindScaleNight(String windScaleNight) {
             this.windScaleNight = windScaleNight;
         }
-
+        //风速夜间
         public String getWindSpeedNight() {
             return windSpeedNight;
         }

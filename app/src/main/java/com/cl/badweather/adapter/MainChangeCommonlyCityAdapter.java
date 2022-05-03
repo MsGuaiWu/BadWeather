@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * 主页面左右滑动切换常用城市列表适配器
  *
- * @author llw
+ * @author cl
  */
 public class MainChangeCommonlyCityAdapter extends BaseQuickAdapter<ResidentCity, BaseViewHolder> {
     public MainChangeCommonlyCityAdapter(int layoutResId, @Nullable List<ResidentCity> data) {

@@ -21,7 +21,21 @@ public class WorldCityContract {
          */
         public void worldCity(String range){
             ApiService service = NetworkApi.createService(ApiService.class,4);
-            service.
+            service.worldCity(range).compose(NetworkApi.applySchedulers(new BaseObserver<WorldCityResponse>() {
+                @Override
+                public void onSuccess(WorldCityResponse worldCityResponse) {
+                    if (getView() != null) {
+                        getView().getWorldCityResult(worldCityResponse);
+                    }
+                }
+
+                @Override
+                public void onFailure(Throwable e) {
+                    if (getView() != null) {
+                        getView().getDataFailed();
+                    }
+                }
+            }));
         }
     }
     public interface IWorldCityView extends BaseView {

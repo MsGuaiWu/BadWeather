@@ -2,7 +2,6 @@ package com.cl.mvplibrary.net;
 
 import com.cl.mvplibrary.net.Interceptor.RequestInterceptor;
 import com.cl.mvplibrary.net.Interceptor.ResponseInterceptor;
-import com.cl.mvplibrary.net.environment.NetworkEnvironmentActivity;
 import com.cl.mvplibrary.net.errorhandler.ExceptionHandle;
 import com.cl.mvplibrary.net.errorhandler.HttpErrorHandler;
 
@@ -88,7 +87,7 @@ public class NetworkApi {
     public static void init(INetworkRequiredInfo networkRequiredInfo) {
         iNetworkRequiredInfo = networkRequiredInfo;
         //当初始化这个NetworkApi时，会判断当前App的网络环境
-        isFormal = NetworkEnvironmentActivity.isFormalEnvironment(networkRequiredInfo.getApplicationContext());
+//        isFormal = NetworkEnvironmentActivity.isFormalEnvironment(networkRequiredInfo.getApplicationContext());
        /* if (isFormal) {
             //正式环境
             mBaseUrl = "http://service.picasso.adesk.com";
