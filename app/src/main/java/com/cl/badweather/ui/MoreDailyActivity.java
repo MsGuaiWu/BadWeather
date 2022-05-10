@@ -33,7 +33,7 @@ import butterknife.ButterKnife;
 /**
  * 更多天气预报
  *
- * @author llw
+ * @author cl
  */
 public class MoreDailyActivity extends MvpActivity<MoreDailyContract.MoreDailyPresenter> implements MoreDailyContract.IMoreDailyView {
 

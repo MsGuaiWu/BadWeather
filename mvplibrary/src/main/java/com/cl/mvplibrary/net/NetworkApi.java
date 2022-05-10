@@ -36,8 +36,6 @@ public class NetworkApi {
     private static HashMap<String, Retrofit> retrofitHashMap = new HashMap<>();
     //API访问地址
     private static String mBaseUrl;
-    //是否为正式环境
-    private static boolean isFormal = true;
     /**
      * 修改访问地址
      * @param type
@@ -86,15 +84,7 @@ public class NetworkApi {
      */
     public static void init(INetworkRequiredInfo networkRequiredInfo) {
         iNetworkRequiredInfo = networkRequiredInfo;
-        //当初始化这个NetworkApi时，会判断当前App的网络环境
-//        isFormal = NetworkEnvironmentActivity.isFormalEnvironment(networkRequiredInfo.getApplicationContext());
-       /* if (isFormal) {
-            //正式环境
-            mBaseUrl = "http://service.picasso.adesk.com";
-        } else {
-            //测试环境
-            mBaseUrl = "https://cn.bing.com";
-        }*/
+
     }
     /**
      * 创建serviceClass的实例

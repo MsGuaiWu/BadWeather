@@ -14,7 +14,7 @@ import com.cl.mvplibrary.net.observer.BaseObserver;
 /**
  * 世界城市天气订阅器
  *
- * @author llw
+ * @author cl
  */
 public class WorldCityWeatherContract {
 

@@ -131,7 +131,7 @@ public class AboutUsActivity extends BaseActivity {
             //复制邮箱
             case R.id.tv_copy_email:
                 myClipboard = (ClipboardManager) context.getSystemService(CLIPBOARD_SERVICE);
-                myClip = ClipData.newPlainText("text", "lonelyholiday@qq.com");
+                myClip = ClipData.newPlainText("text", "2284117970@qq.com");
                 myClipboard.setPrimaryClip(myClip);
                 ToastUtils.showShortToast(context, "邮箱已复制");
                 break;

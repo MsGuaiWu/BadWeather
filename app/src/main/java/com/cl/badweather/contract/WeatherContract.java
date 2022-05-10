@@ -42,7 +42,6 @@ public class WeatherContract {
                                getView().getNewSearchCityResult(newSearchCityResponse);
                            }
                        }
-
                        @Override
                        public void onFailure(Throwable e) {
                            if (getView() != null) {

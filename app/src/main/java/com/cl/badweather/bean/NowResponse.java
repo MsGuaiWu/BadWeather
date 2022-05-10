@@ -239,4 +239,5 @@ public class NowResponse {
             this.license = license;
         }
     }
+
 }

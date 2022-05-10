@@ -36,8 +36,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class CommonlyUsedCityActivity extends MvpActivity<SearchCityContract.SearchCityPresenter> implements SearchCityContract.ISearchCityView {
+public class CommonlyUsedCityActivity extends MvpActivity<SearchCityContract.SearchCityPresenter>
+        implements SearchCityContract.ISearchCityView {
 
     @BindView(R.id.edit_query)
     EditText editQuery; //输入框
@@ -85,7 +87,15 @@ public class CommonlyUsedCityActivity extends MvpActivity<SearchCityContract.Sea
             ToastUtils.showShortToast(context, CodeToStringUtils.WeatherCode(response.getCode()));
         }
     }
-
+    @OnClick({R.id.iv_clear_search })
+    public void OnViewClicked(View view){
+        switch (view.getId()){
+            case R.id.iv_clear_search:
+                ivClearSearch.setVisibility(View.GONE);
+                editQuery.setText("");
+                break;
+        }
+    }
     /**
      * 网络异常返回处理
      */

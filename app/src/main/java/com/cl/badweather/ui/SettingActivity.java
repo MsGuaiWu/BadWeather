@@ -20,6 +20,9 @@ import java.util.List;
 
 import butterknife.BindView;
 
+/**
+ * 应用设置
+ */
 public class SettingActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)

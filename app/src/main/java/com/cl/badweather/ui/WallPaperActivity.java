@@ -44,6 +44,9 @@ import butterknife.OnClick;
 
 import static com.cl.badweather.utils.Constant.SELECT_PHOTO;
 
+/**
+ * 壁纸管理
+ */
 public class WallPaperActivity extends MvpActivity<WallPaperContract.WallPaperPresenter> implements WallPaperContract.IWallPaperView {
     /**
      * 标题

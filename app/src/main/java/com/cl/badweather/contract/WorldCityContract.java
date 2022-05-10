@@ -1,5 +1,7 @@
 package com.cl.badweather.contract;
 
+import android.annotation.SuppressLint;
+
 import com.cl.badweather.api.ApiService;
 import com.cl.badweather.bean.WorldCityResponse;
 import com.cl.badweather.ui.WorldCityActivity;
@@ -19,6 +21,7 @@ public class WorldCityContract {
          * 世界城市 V7
          * @param range 类型
          */
+        @SuppressLint("CheckResult")
         public void worldCity(String range){
             ApiService service = NetworkApi.createService(ApiService.class,4);
             service.worldCity(range).compose(NetworkApi.applySchedulers(new BaseObserver<WorldCityResponse>() {

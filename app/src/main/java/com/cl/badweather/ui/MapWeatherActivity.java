@@ -93,7 +93,7 @@ import static com.cl.badweather.utils.DateUtils.updateTime;
 /**
  * 地图天气
  *
- * @author llw
+ * @author cl
  */
 
 public class MapWeatherActivity extends MvpActivity<MapWeatherContract.MapWeatherPresenter>

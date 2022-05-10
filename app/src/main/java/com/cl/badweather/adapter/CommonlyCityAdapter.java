@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * 常用城市列表适配器
  *
- * @author llw
+ * @author cl
  */
 public class CommonlyCityAdapter extends BaseQuickAdapter<ResidentCity, BaseViewHolder> {
     public CommonlyCityAdapter(int layoutResId, @Nullable List<ResidentCity> data) {

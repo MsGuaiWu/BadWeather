@@ -119,7 +119,7 @@ import static com.cl.mvplibrary.utils.RecyclerViewAnimation.runLayoutAnimationRi
 /**
  * 主页面
  *
- * @author llw
+ * @author cl
  */
 @RequiresApi(api = Build.VERSION_CODES.M)
 public class MainActivity extends MvpActivity<WeatherContract.WeatherPresenter>
